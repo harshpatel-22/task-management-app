@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TaskModule } from './task/task.module';
+require('dotenv').config()
 
 @Module({
   imports: [
@@ -10,9 +11,9 @@ import { TaskModule } from './task/task.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'task-management',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),

@@ -6,6 +6,7 @@ import {
   Param,
   Put,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 
@@ -43,5 +44,13 @@ export class TaskController {
   @Delete('/:id')
   async deleteTask(@Param('id') id: string) {
     return this.taskService.deleteTask(id);
+  }
+
+  @Patch('/:id/status')
+  async updateStatus(
+    @Param('id') id: string,
+    @Body('isCompleted') isCompleted: boolean,
+  ) {
+    return this.taskService.updateStatus(id, isCompleted);
   }
 }
